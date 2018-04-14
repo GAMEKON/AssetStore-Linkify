@@ -60,7 +60,7 @@
                         sURLText.substring(lastLastIndex, match.index)));
                     let elmLink = document.createElement("a");
                     elmLink.className = "unitystore-link";
-                    elmLink.setAttribute("href", match[0]);
+                    elmLink.setAttribute("href", match[0].substring(0,3)=="http"?match[0]:"http://"+match[0]);
                     elmLink.setAttribute("target", '_blank');
                     elmLink.appendChild(document.createTextNode(match[0]));
                     elmSpan.appendChild(elmLink);
