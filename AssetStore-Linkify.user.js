@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AssetStore Linkify
 // @namespace    https://github.com/GAMEKON/AssetStore-Linkify
-// @version      0.2.3
+// @version      0.3
 // @license      MIT
 // @description  AssetStore Linkify is a user script for finding links in plain-text and converting them to HTML <a> tags.
 // @homepageURL  https://github.com/XpycT/assetstore-linkify
@@ -12,6 +12,7 @@
 // @resource     fontCss https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
 // @match        *://forum.cgpersia.com/*
 // @match        *://www.cgpeers.to/*
+// @match        *://gfxpeers.net/*
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_addStyle
@@ -38,8 +39,7 @@
      */
     function replaceTextLinks() {
         let urlRegex = /\b([^\s+\"\<\>]+)/ig;
-        let snapTextElements = document.evaluate("//text()[not(ancestor::a) " +
-            "and not(ancestor::script) and not(ancestor::style) and " +
+        let snapTextElements = document.evaluate("//text()[not(ancestor::script) and not(ancestor::style) and " +
             "contains(., 'assetstore.unity')]",
             document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
         for (let i = snapTextElements.snapshotLength - 1; i >= 0; i--) {
@@ -178,6 +178,7 @@
                 });
             });
             $(this).append(small);
+            small.click();
         });
     }
 
